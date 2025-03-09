@@ -33,3 +33,32 @@ const getHumanChoice = () => {
 
     return choice;
 }
+
+const playRound = (computerChoice, humanChoice) => {
+
+    if (!humanChoice) {
+        return;
+    }
+
+    if (computerChoice === humanChoice) {
+        console.log(`It's a tie! You chose ${humanChoice} and the computer chose ${computerChoice} as well!`);
+        return;
+    }
+
+    let result        = 1;
+    let message       = `You won! ${humanChoice} beats ${computerChoice}!`;
+    const bothChoices = computerChoice + humanChoice;
+
+    if (['rockscissors', 'scissorspaper', 'paperrock'].includes(bothChoices)) {
+        result  = 0;
+        message = `You lost! ${computerChoice} beats ${humanChoice}!`;
+        computerScore++;
+    }
+    else {
+        humanScore++;
+    }
+
+    console.log(message);
+}
+
+playRound(getComputerChoice(), getHumanChoice());
