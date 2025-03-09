@@ -21,6 +21,9 @@ It works, but it has unnecessary conditional checks.
     return null;
 } */
 
+let computerScore = 0;
+let humanScore    = 0;
+
 //  Optimized and cleaner function
 const getComputerChoice = () => {
 
