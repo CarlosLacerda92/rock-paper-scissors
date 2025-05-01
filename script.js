@@ -79,8 +79,25 @@ const playRound = (computerChoice, humanChoice) => {
         }
     });
 
-    scoreElement.dispatchEvent(event);
+    //  Workaround to make the confirm alert box pop up in the correct order (after the message is printed in the DOM).
+    setTimeout(() => {
+        scoreElement.dispatchEvent(event);
+    },
+    0);
 };
+
+const restartGame = () => {
+    round         = 0;
+    ties          = 0;
+    computerScore = 0;
+    humanScore    = 0;
+
+    roundSpan.textContent   = 0;
+    winSpan.textContent     = 0;
+    lossSpan.textContent    = 0;
+    tieSpan.textContent     = 0;
+    messageSpan.textContent = '';
+}
 
 // Later, try to use event delegation here.
 document.querySelectorAll('div#playableButtons button').forEach((element) => {
@@ -97,16 +114,14 @@ document.querySelectorAll('div#results span#wins, div#results span#losses').forE
 
         if (numberOfWinsOrLosses === limit) {
 
-            let message = messageSpan.textContent;
+            let message = 'Game Over!\nYou won! Congratulations!';
 
-            if (event.detail.winner === 'human') {
-                message += ' Final result: You won! Congratulations!';
-            }
-            else {
-                message += ' Final result: You lost! Better luck next time!';
+            if (event.detail.winner === 'computer') {
+                message = 'Game Over!\nYou lost! Better luck next time!';
             }
 
-            printMessage(messageSpan, message);
+            alert(message);
+            restartGame();
         }
     });
 });
