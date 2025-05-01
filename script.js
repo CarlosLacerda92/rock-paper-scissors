@@ -105,6 +105,8 @@ document.querySelectorAll('section#playableButtons button').forEach((element) =>
     });
 });
 
+document.querySelector('button#restart').addEventListener('click', restartGame);
+
 document.querySelectorAll('section#results span#wins, section#results span#losses').forEach((element) => {
 
     element.addEventListener('checkWinner', (event) => {
