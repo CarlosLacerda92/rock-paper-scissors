@@ -18,27 +18,29 @@ const getComputerChoice = () => {
 
 const changeScores = (player) => {
 
-    if (!['human', 'computer'].includes(player)) {
+    if (!['human', 'computer', 'tie'].includes(player)) {
         return;
     }
 
-    const event = new CustomEvent('changeScores', {
-        detail: {
-            winner: player
-        }
-    });
+    if (player === 'tie') {
+        ties++;
+        tieSpan.textContent = ties;
+        return;
+    }
 
     if (player === 'human') {
         humanScore++;
         winSpan.textContent = humanScore;
-        winSpan.dispatchEvent(event);
     }
     else {
         computerScore++;
         element = lossSpan;
         lossSpan.textContent = computerScore;
-        lossSpan.dispatchEvent(event);
     }
+}
+
+const printMessage = (element, message) => {
+    element.textContent = message;
 }
 
 const playRound = (computerChoice, humanChoice) => {
@@ -51,31 +53,33 @@ const playRound = (computerChoice, humanChoice) => {
     roundSpan.textContent = round;
 
     if (computerChoice === humanChoice) {
-
-        ties++;
-
-        tieSpan.textContent = ties;
-        messageSpan.textContent = `It's a tie! You chose ${humanChoice} and the computer chose ${computerChoice} as well!`;
-
+        changeScores('tie');
+        printMessage(messageSpan, `It's a tie! You chose ${humanChoice} and the computer chose ${computerChoice} as well!`);
         return;
     }
 
-    let message       = ``;
     const bothChoices = computerChoice + humanChoice;
+    winnerOfTheRound  = 'human';
+    scoreElement      = winSpan;
 
     if (['rockscissors', 'scissorspaper', 'paperrock'].includes(bothChoices)) {
         changeScores('computer');
-        //  Later, try to create a function to print this message into the DOM.
-        message = `You lost this round! ${humanChoice} is beaten by ${computerChoice}!`;
-        
+        printMessage(messageSpan, `You lost this round! ${humanChoice} is beaten by ${computerChoice}!`);
+        winnerOfTheRound = 'computer';
+        scoreElement      = lossSpan;
     }
     else {
         changeScores('human');
-        //  Later, try to create a function to print this message into the DOM.
-        message = `You won this round! ${humanChoice} beats ${computerChoice}!`;
+        printMessage(messageSpan, `You won this round! ${humanChoice} beats ${computerChoice}!`);
     }
 
-    messageSpan.textContent = message;
+    const event = new CustomEvent('checkWinner', {
+        detail: {
+            winner: winnerOfTheRound
+        }
+    });
+
+    scoreElement.dispatchEvent(event);
 };
 
 // Later, try to use event delegation here.
@@ -87,13 +91,22 @@ document.querySelectorAll('div#playableButtons button').forEach((element) => {
 
 document.querySelectorAll('div#results span#wins, div#results span#losses').forEach((element) => {
 
-    element.addEventListener('changeScores', (event) => {
+    element.addEventListener('checkWinner', (event) => {
 
         const numberOfWinsOrLosses = +event.target.textContent;
 
-        
         if (numberOfWinsOrLosses === limit) {
-            alert(`${event.detail.winner} wins!`)
+
+            let message = messageSpan.textContent;
+
+            if (event.detail.winner === 'human') {
+                message += ' Final result: You won! Congratulations!';
+            }
+            else {
+                message += ' Final result: You lost! Better luck next time!';
+            }
+
+            printMessage(messageSpan, message);
         }
     });
 });
