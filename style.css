@@ -33,6 +33,13 @@ section#playableButtons {
     gap: 1rem;
 }
 
+section#icons {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;   
+}
+
 section#results > div,
 section#playableButtons > div {
     display: flex;
@@ -48,4 +55,8 @@ section#results > div > div {
 
 h1, h2 {
     margin: 0;
+}
+
+.rps-icon {
+    font-size: 10rem;
 }

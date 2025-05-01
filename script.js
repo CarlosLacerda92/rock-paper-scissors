@@ -2,19 +2,27 @@ let round         = 0;
 let ties          = 0;
 let computerScore = 0;
 let humanScore    = 0;
-const limit       = 5;
+const LIMIT       = 5;
+const EMOJIS      = {'rock': '&#128074;', 'paper': '&#128400;', 'scissors': '&#9996;'}
 
-const roundSpan   = document.querySelector('span#round');
-const winSpan     = document.querySelector('span#wins');
-const lossSpan    = document.querySelector('span#losses');
-const tieSpan     = document.querySelector('span#ties');
-const messageSpan = document.querySelector('span#message');
+const roundSpan       = document.querySelector('span#round');
+const winSpan         = document.querySelector('span#wins');
+const lossSpan        = document.querySelector('span#losses');
+const tieSpan         = document.querySelector('span#ties');
+const humanIconDiv    = document.querySelector('span#humanIcon');
+const computerIconDiv = document.querySelector('span#computerIcon');
+const iconsSection    = document.querySelector('section#icons');
+const messageSpan     = document.querySelector('span#message');
 
 const getComputerChoice = () => {
     const choices      = ["rock", "paper", "scissors"];
     const randomNumber = Math.floor(Math.random() * choices.length);
     return choices[randomNumber];
 };
+
+const printIcon = (element, icon) => {
+    element.innerHTML = EMOJIS[icon];
+}
 
 const changeScores = (player) => {
 
@@ -51,6 +59,10 @@ const playRound = (computerChoice, humanChoice) => {
 
     round++;
     roundSpan.textContent = round;
+
+    printIcon(computerIconDiv, computerChoice);
+    printIcon(humanIconDiv, humanChoice);
+    iconsSection.style.display = 'flex';
 
     if (computerChoice === humanChoice) {
         changeScores('tie');
@@ -92,11 +104,14 @@ const restartGame = () => {
     computerScore = 0;
     humanScore    = 0;
 
-    roundSpan.textContent   = 0;
-    winSpan.textContent     = 0;
-    lossSpan.textContent    = 0;
-    tieSpan.textContent     = 0;
-    messageSpan.textContent = '';
+    roundSpan.textContent      = 0;
+    winSpan.textContent        = 0;
+    lossSpan.textContent       = 0;
+    tieSpan.textContent        = 0;
+    messageSpan.textContent    = '';
+    iconsSection.style.display = 'none';
+    humanIconDiv.innerHTML     = '';
+    computerIconDiv.innerHTML  = '';
 }
 
 document.querySelectorAll('section#playableButtons button').forEach((element) => {
@@ -113,7 +128,7 @@ document.querySelectorAll('section#results span#wins, section#results span#losse
 
         const numberOfWinsOrLosses = +event.target.textContent;
 
-        if (numberOfWinsOrLosses === limit) {
+        if (numberOfWinsOrLosses === LIMIT) {
 
             let message = 'Game over!\nYou won! Congratulations!';
 
