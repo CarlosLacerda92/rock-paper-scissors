@@ -51,7 +51,7 @@ const playRound = (computerChoice, humanChoice) => {
     messageSpan.textContent = message;
 };
 
-document.querySelectorAll('button').forEach((element) => {
+document.querySelectorAll('div#playableButtons button').forEach((element) => {
     element.addEventListener('click', () => {
         playRound(getComputerChoice(), element.id);
     });
