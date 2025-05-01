@@ -113,10 +113,10 @@ document.querySelectorAll('section#results span#wins, section#results span#losse
 
         if (numberOfWinsOrLosses === limit) {
 
-            let message = 'Game Over!\nYou won! Congratulations!';
+            let message = 'Game over!\nYou won! Congratulations!';
 
             if (event.detail.winner === 'computer') {
-                message = 'Game Over!\nYou lost! Better luck next time!';
+                message = 'Game over!\nYou lost! Better luck next time!';
             }
 
             alert(message);
