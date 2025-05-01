@@ -99,14 +99,13 @@ const restartGame = () => {
     messageSpan.textContent = '';
 }
 
-// Later, try to use event delegation here.
-document.querySelectorAll('div#playableButtons button').forEach((element) => {
+document.querySelectorAll('section#playableButtons button').forEach((element) => {
     element.addEventListener('click', () => {
         playRound(getComputerChoice(), element.id);
     });
 });
 
-document.querySelectorAll('div#results span#wins, div#results span#losses').forEach((element) => {
+document.querySelectorAll('section#results span#wins, section#results span#losses').forEach((element) => {
 
     element.addEventListener('checkWinner', (event) => {
 

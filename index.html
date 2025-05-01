@@ -6,39 +6,54 @@
         <meta charset="UTF-8">
         <title>Rock, Paper, Scissors</title>
         <script src="script.js" defer></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
     <body>
-        <div id="results">
-            <span>
-                Rounds played: <span id="round">0</span>
-            </span>
-            <span>
-                Wins: <span id="wins">0</span>
-            </span>
-            <span>
-                Losses: <span id="losses">0</span>
-            </span>
-            <span>
-                Ties: <span id="ties">0</span>
-            </span>
-        </div>
+        <header>
+            <h1>
+                Rock, Paper, Scissors
+            </h1>
+        </header>
 
-        <div id="playableButtons">
-            <button type="button" id="rock">
-                Rock
-            </button>
-            <button type="button" id="paper">
-                Paper
-            </button>
-            <button type="button" id="scissors">
-                Scissors
-            </button>
-        </div>
+        <main>
+            <section id="results" aria-label="Scoreboard">
+                <h2>
+                    Scoreboard
+                </h2>
+                <span>
+                    Rounds played: <span id="round">0</span>
+                </span>
+                <span>
+                    Wins: <span id="wins">0</span>
+                </span>
+                <span>
+                    Losses: <span id="losses">0</span>
+                </span>
+                <span>
+                    Ties: <span id="ties">0</span>
+                </span>
+            </section>
 
-        <div>
-            <span id="message">
-            </span>
-        </div>
+            <section id="playableButtons">
+                <h2>
+                    Choose your move
+                </h2>
+                <button type="button" id="rock">
+                    Rock
+                </button>
+                <button type="button" id="paper">
+                    Paper
+                </button>
+                <button type="button" id="scissors">
+                    Scissors
+                </button>
+            </section>
+
+            <section>
+                <span id="message">
+                </span>
+            </section>
+        </main>
     </body>
 </html>
