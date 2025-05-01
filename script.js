@@ -2,6 +2,7 @@ let round         = 0;
 let ties          = 0;
 let computerScore = 0;
 let humanScore    = 0;
+const limit       = 5;
 
 const roundSpan   = document.querySelector('span#round');
 const winSpan     = document.querySelector('span#wins');
@@ -14,6 +15,31 @@ const getComputerChoice = () => {
     const randomNumber = Math.floor(Math.random() * choices.length);
     return choices[randomNumber];
 };
+
+const changeScores = (player) => {
+
+    if (!['human', 'computer'].includes(player)) {
+        return;
+    }
+
+    const event = new CustomEvent('changeScores', {
+        detail: {
+            winner: player
+        }
+    });
+
+    if (player === 'human') {
+        humanScore++;
+        winSpan.textContent = humanScore;
+        winSpan.dispatchEvent(event);
+    }
+    else {
+        computerScore++;
+        element = lossSpan;
+        lossSpan.textContent = computerScore;
+        lossSpan.dispatchEvent(event);
+    }
+}
 
 const playRound = (computerChoice, humanChoice) => {
 
@@ -38,21 +64,36 @@ const playRound = (computerChoice, humanChoice) => {
     const bothChoices = computerChoice + humanChoice;
 
     if (['rockscissors', 'scissorspaper', 'paperrock'].includes(bothChoices)) {
-        computerScore++;
-        lossSpan.textContent = computerScore;
-        message = `You lost! ${humanChoice} is beaten by ${computerChoice}!`;
+        changeScores('computer');
+        //  Later, try to create a function to print this message into the DOM.
+        message = `You lost this round! ${humanChoice} is beaten by ${computerChoice}!`;
+        
     }
     else {
-        humanScore++;
-        winSpan.textContent = humanScore;
-        message = `You won! ${humanChoice} beats ${computerChoice}!`;
+        changeScores('human');
+        //  Later, try to create a function to print this message into the DOM.
+        message = `You won this round! ${humanChoice} beats ${computerChoice}!`;
     }
 
     messageSpan.textContent = message;
 };
 
+// Later, try to use event delegation here.
 document.querySelectorAll('div#playableButtons button').forEach((element) => {
     element.addEventListener('click', () => {
         playRound(getComputerChoice(), element.id);
+    });
+});
+
+document.querySelectorAll('div#results span#wins, div#results span#losses').forEach((element) => {
+
+    element.addEventListener('changeScores', (event) => {
+
+        const numberOfWinsOrLosses = +event.target.textContent;
+
+        
+        if (numberOfWinsOrLosses === limit) {
+            alert(`${event.detail.winner} wins!`)
+        }
     });
 });
