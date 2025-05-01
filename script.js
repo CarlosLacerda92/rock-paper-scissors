@@ -1,93 +1,58 @@
+let round         = 0;
+let ties          = 0;
+let computerScore = 0;
+let humanScore    = 0;
 
-//  Optimized and cleaner function
+const roundSpan   = document.querySelector('span#round');
+const winSpan     = document.querySelector('span#wins');
+const lossSpan    = document.querySelector('span#losses');
+const tieSpan     = document.querySelector('span#ties');
+const messageSpan = document.querySelector('span#message');
+
 const getComputerChoice = () => {
-
-    const choices      = ["rock", "paper", "scissors"];                 //  I actually thought using an array would be a better option for this case.
-    const randomNumber = Math.floor(Math.random() * choices.length);    //  But I didn't think I could generate a random number
-    return choices[randomNumber];                                       //  and use it as an index to return the corresponding item from the choices array.
+    const choices      = ["rock", "paper", "scissors"];
+    const randomNumber = Math.floor(Math.random() * choices.length);
+    return choices[randomNumber];
 };
 
-const getHumanChoice = () => {
+const playRound = (computerChoice, humanChoice) => {
 
-    let choice           = '';
-    const allowedChoices = ["rock", "paper", "scissors"];
-    let keepGoing        = true;
-
-    while (keepGoing) {
-
-        choice = prompt('Rock, Paper, or Scissors?');
-
-        if (choice === null) {
-            keepGoing = false;
-        }
-        else {
-            choice = choice.toLowerCase();
-
-            if (allowedChoices.includes(choice)) {
-                keepGoing = false;
-            }
-        }
+    if (!humanChoice) {
+        return;
     }
 
-    return choice;
-};
+    round++;
+    roundSpan.textContent = round;
 
-/* playRound(getComputerChoice(), getHumanChoice()); */
+    if (computerChoice === humanChoice) {
 
-const playGame = () => {
+        ties++;
 
-    let computerScore = 0;
-    let humanScore    = 0;
-    let ties          = 0;
-    let finalMessage  = ``;
+        tieSpan.textContent = ties;
+        messageSpan.textContent = `It's a tie! You chose ${humanChoice} and the computer chose ${computerChoice} as well!`;
 
-    const playRound = (computerChoice, humanChoice) => {
-
-        if (!humanChoice) {
-            return;
-        }
-    
-        if (computerChoice === humanChoice) {
-            ties++;
-            console.log(`It's a tie! You chose ${humanChoice} and the computer chose ${computerChoice} as well!\nYour score: ${humanScore}\nComputer score: ${computerScore}\nTies: ${ties}`);
-            return;
-        }
-    
-        let result        = 1;
-        let message       = ``;
-        const bothChoices = computerChoice + humanChoice;
-    
-        if (['rockscissors', 'scissorspaper', 'paperrock'].includes(bothChoices)) {
-            result  = 0;
-            computerScore++;
-            message = `You lost! ${computerChoice} beats ${humanChoice}!\nYour score: ${humanScore}\nComputer score: ${computerScore}\nTies: ${ties}`;
-        }
-        else {
-            humanScore++;
-            message = `You won! ${humanChoice} beats ${computerChoice}!\nYour score: ${humanScore}\nComputer score: ${computerScore}\nTies: ${ties}`;
-        }
-    
-        console.log(message);
-    };
-
-    for (let i = 1; i <= 5; i++) {
-        console.log(`Round ${i} of 5!`)
-        playRound(getComputerChoice(), getHumanChoice());
+        return;
     }
 
-    finalMessage = `Game Over!\nFinal scores:\nYou: ${humanScore}\nComputer: ${computerScore}`;
+    let message       = ``;
+    const bothChoices = computerChoice + humanChoice;
 
-    if (humanScore < computerScore) {
-        finalMessage += `\nYou lost! Try again.`;
-    }
-    else if (humanScore > computerScore) {
-        finalMessage += `\nYou won! Congratulations!`;
+    if (['rockscissors', 'scissorspaper', 'paperrock'].includes(bothChoices)) {
+        computerScore++;
+        lossSpan.textContent = computerScore;
+        message = `You lost! ${humanChoice} is beaten by ${computerChoice}!`;
     }
     else {
-        finalMessage += `\nIt's a tie!`;
+        humanScore++;
+        winSpan.textContent = humanScore;
+        message = `You won! ${humanChoice} beats ${computerChoice}!`;
     }
 
-    console.log(finalMessage);
+    messageSpan.textContent = message;
 };
 
-playGame();
+document.querySelectorAll('button').forEach((element) => {
+    element.addEventListener('click', () => {
+        playRound(getComputerChoice(), element.id);
+    });
+});

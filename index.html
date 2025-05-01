@@ -3,15 +3,42 @@
 <html lang="en">
 
     <head>
-
         <meta charset="UTF-8">
         <title>Rock, Paper, Scissors</title>
-
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
     </head>
 
     <body>
+        <div id="results">
+            <span>
+                Rounds played: <span id="round">0</span>
+            </span>
+            <span>
+                Wins: <span id="wins">0</span>
+            </span>
+            <span>
+                Losses: <span id="losses">0</span>
+            </span>
+            <span>
+                Ties: <span id="ties">0</span>
+            </span>
+        </div>
 
+        <div>
+            <button type="button" id="rock">
+                Rock
+            </button>
+            <button type="button" id="paper">
+                Paper
+            </button>
+            <button type="button" id="scissors">
+                Scissors
+            </button>
+        </div>
+
+        <div>
+            <span id="message">
+            </span>
+        </div>
     </body>
-
 </html>
