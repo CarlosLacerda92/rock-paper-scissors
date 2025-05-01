@@ -60,3 +60,15 @@ h1, h2 {
 .rps-icon {
     font-size: 10rem;
 }
+
+.rps-button {
+    font-size: 3rem;
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+}
