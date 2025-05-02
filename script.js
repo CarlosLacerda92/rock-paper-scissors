@@ -66,7 +66,7 @@ const playRound = (computerChoice, humanChoice) => {
 
     if (computerChoice === humanChoice) {
         changeScores('tie');
-        printMessage(messageSpan, `It's a tie! You chose ${humanChoice} and the computer chose ${computerChoice} as well!`);
+        printMessage(messageSpan, `Tie!`);
         return;
     }
 
@@ -76,13 +76,13 @@ const playRound = (computerChoice, humanChoice) => {
 
     if (['rockscissors', 'scissorspaper', 'paperrock'].includes(bothChoices)) {
         changeScores('computer');
-        printMessage(messageSpan, `You lost this round! ${humanChoice} is beaten by ${computerChoice}!`);
+        printMessage(messageSpan, `You lost!`);
         winnerOfTheRound = 'computer';
         scoreElement      = lossSpan;
     }
     else {
         changeScores('human');
-        printMessage(messageSpan, `You won this round! ${humanChoice} beats ${computerChoice}!`);
+        printMessage(messageSpan, `You won!`);
     }
 
     const event = new CustomEvent('checkWinner', {
@@ -109,7 +109,6 @@ const restartGame = () => {
     lossSpan.textContent       = 0;
     tieSpan.textContent        = 0;
     messageSpan.textContent    = '';
-    iconsSection.style.display = 'none';
     humanIconDiv.innerHTML     = '';
     computerIconDiv.innerHTML  = '';
 }
@@ -122,7 +121,7 @@ document.querySelectorAll('section#playableButtons button').forEach((element) =>
 
 document.querySelector('button#restart').addEventListener('click', restartGame);
 
-document.querySelectorAll('section#results span#wins, section#results span#losses').forEach((element) => {
+document.querySelectorAll('span#wins, span#losses').forEach((element) => {
 
     element.addEventListener('checkWinner', (event) => {
 

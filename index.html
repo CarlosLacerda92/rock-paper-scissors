@@ -10,82 +10,82 @@
     </head>
 
     <body>
+
         <div class="page-wrapper">
-            <header>
+
+            <!-- <header>
                 <h1>
                     Rock, Paper, Scissors
                 </h1>
-                <span>
+                <span class="small">
                     Whoever wins 5 rounds first, wins the game!
                 </span>
-                <button type="button" id="restart">
-                    Restart game
-                </button>
-            </header>
+            </header> -->
 
             <main>
-                <section id="results" aria-label="Scoreboard">
-                    <h2>
-                        Scoreboard
-                    </h2>
+                <header id="results" aria-label="Scoreboard">
                     <div>
                         <div>
                             <span id="round">0</span>
-                            <span>
+                            <span class="small">
                                 Rounds
                             </span>
                         </div>
                         <div>
-                            <span id="wins">0</span>
-                            <span>
-                                Wins
-                            </span>
-                        </div>
-                        <div>
-                            <span id="losses">0</span>
-                            <span>
-                                Losses
-                            </span>
-                        </div>
-                        <div>
                             <span id="ties">0</span>
-                            <span>
+                            <span class="small">
                                 Ties
                             </span>
                         </div>
+                        <button type="button" id="rules">
+                            Rules
+                        </button>
+                        <button type="button" id="restart">
+                            Restart
+                        </button>
                     </div>
-                </section>
+                </header>
 
-                <section id="playableButtons">
-                    <h2>
-                        Choose your move
-                    </h2>
+                <section id="computerButtons">
                     <div>
-                        <button type="button" id="rock" class="rps-button">
-                            &#128074;
-                        </button>
-                        <button type="button" id="paper" class="rps-button">
-                            &#128400;
-                        </button>
-                        <button type="button" id="scissors" class="rps-button">
-                            &#9996;
-                        </button>
+                        <h2>
+                            Computer
+                        </h2>
+                        <span id="losses" class="medium">
+                            0
+                        </span>
                     </div>
                 </section>
 
                 <section id="icons">
-                    <span id="humanIcon" class="rps-icon">
-                    </span>
-                    <span>
-                        VS
-                    </span>
                     <span id="computerIcon" class="rps-icon">
+                    </span>
+                    <span id="message" class="big">
+                    </span>
+                    <span id="humanIcon" class="rps-icon">
                     </span>
                 </section>
 
-                <section>
-                    <span id="message">
-                    </span>
+                <section id="playableButtons">
+                    <div>
+                        <h2>
+                            You
+                        </h2>
+                        <span id="wins" class="medium">
+                            0
+                        </span>
+                    </div>
+                    <div>
+                        <button type="button" id="rock" class="rps-button" title="Rock">
+                            &#128074;
+                        </button>
+                        <button type="button" id="paper" class="rps-button" title="Paper">
+                            &#128400;
+                        </button>
+                        <button type="button" id="scissors" class="rps-button" title="Scissors">
+                            &#9996;
+                        </button>
+                    </div>
                 </section>
             </main>
         </div>
