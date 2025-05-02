@@ -1,10 +1,25 @@
+:root {
+    --page-background-color: #264653;
+    --wrapper-background-color: #f9f7f3;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--page-background-color);
+}
+
+div.page-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    background-color: var(--wrapper-background-color);
+    padding: 2rem 1rem;
+    border-radius: 1rem;
 }
 
 header {
