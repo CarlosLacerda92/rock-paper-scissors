@@ -113,6 +113,10 @@ const restartGame = () => {
     computerIconDiv.innerHTML  = '';
 }
 
+const showRules = () => {
+    alert("Paper, Rock, Scissors rules:\n\nPaper beats Rock\nRock beats Scissors\nScissors beats Paper\n\nChoose your move by clicking one of the three buttons at the bottom of the screen.\nWhoever wins 5 rounds first, wins the game! Good luck!");
+}
+
 document.querySelectorAll('section#playableButtons button').forEach((element) => {
     element.addEventListener('click', () => {
         playRound(getComputerChoice(), element.id);
@@ -120,6 +124,8 @@ document.querySelectorAll('section#playableButtons button').forEach((element) =>
 });
 
 document.querySelector('button#restart').addEventListener('click', restartGame);
+
+document.querySelector('button#rules').addEventListener('click', showRules);
 
 document.querySelectorAll('span#wins, span#losses').forEach((element) => {
 
