@@ -7,54 +7,50 @@
         <title>Rock, Paper, Scissors</title>
         <script src="script.js" defer></script>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     </head>
 
     <body>
 
         <div class="page-wrapper">
 
-            <!-- <header>
+            <header class="top-header">
                 <h1>
                     Rock, Paper, Scissors
                 </h1>
-                <span class="small">
-                    Whoever wins 5 rounds first, wins the game!
-                </span>
-            </header> -->
+            </header>
 
             <main>
                 <header id="results" aria-label="Scoreboard">
                     <div>
-                        <div>
+                        <div class="res-container">
                             <span id="round">0</span>
                             <span class="small">
                                 Rounds
                             </span>
                         </div>
-                        <div>
+                        <div class="res-container">
                             <span id="ties">0</span>
                             <span class="small">
                                 Ties
                             </span>
                         </div>
-                        <button type="button" id="rules">
-                            Rules
+                        <button type="button" id="restart" class="main-button round-button" title="Restart">
+                            <i class='bx bx-refresh'></i>
                         </button>
-                        <button type="button" id="restart">
-                            Restart
+                        <button type="button" id="rules" class="main-button round-button" title="Rules">
+                            <i class='bx bx-info-circle'></i>
                         </button>
                     </div>
                 </header>
 
                 <section id="computerButtons">
-                    <div>
-                        <h2>
-                            Computer
-                        </h2>
-                        <span id="losses" class="medium">
-                            0
-                        </span>
-                    </div>
+                    <h2>
+                        Computer
+                    </h2>
+                    <span id="losses" class="medium">
+                        0
+                    </span>
                 </section>
 
                 <section id="icons">
@@ -76,13 +72,13 @@
                         </span>
                     </div>
                     <div>
-                        <button type="button" id="rock" class="rps-button" title="Rock">
+                        <button type="button" id="rock" class="main-button round-button rps-icon" title="Rock">
                             &#128074;
                         </button>
-                        <button type="button" id="paper" class="rps-button" title="Paper">
+                        <button type="button" id="paper" class="main-button round-button rps-icon" title="Paper">
                             &#128400;
                         </button>
-                        <button type="button" id="scissors" class="rps-button" title="Scissors">
+                        <button type="button" id="scissors" class="main-button round-button rps-icon" title="Scissors">
                             &#9996;
                         </button>
                     </div>

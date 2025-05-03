@@ -1,9 +1,14 @@
 :root {
     --background-color: #f9f7f3;
-    --main-color: #e9c46a;
-    --font-color: #264653;
-    --secondary-font-color: #949eaa;
+    --main-color: #feaa00;
+    --font-color: #241117;
+    --secondary-font-color: #f9f7f3;
+
     --secondary-background-color: #ededed;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -11,7 +16,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: var(--main-color); */
     color: var(--font-color);
 }
 
@@ -22,17 +26,24 @@ div.page-wrapper {
     align-items: center;
     gap: 1rem;
     background-color: var(--background-color);
-    padding: 2rem 4rem;
+    padding: 2rem;
     border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
+header.top-header {
+    margin-top: -2rem;
+    margin-inline: -2em;
+    font-size: 1rem;
+    padding: 1rem;
+    background-color: var(--main-color);
+    color: var(--background-color);
+    width: -webkit-fill-available;
+    border-radius: 1rem 1rem 0 0;
+}
+
+header.top-header h1 {
+    font-size: 1rem;
 }
 
 main {
@@ -44,8 +55,7 @@ main {
 }
 
 header#results,
-section#playableButtons,
-section#computerButtons {
+section#playableButtons {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -55,12 +65,8 @@ section#computerButtons {
 }
 
 header#results {
-    background-color: var(--main-color);
     width: -webkit-fill-available;
-    margin-inline: -4rem;
-    margin-top: -2rem;
     border-radius: 1rem 1rem 0 0;
-    padding: 1rem;
 }
 
 section#icons {
@@ -73,17 +79,28 @@ section#icons {
     width: -webkit-fill-available;
     height: 20rem;
     background-color: var(--secondary-background-color);
-    margin: 0 -4rem;
+    border-radius: 1rem;
+}
+
+section#icons .rps-icon {
+    font-size: 3rem;
 }
 
 header#results > div,
 section#playableButtons > div,
-section#computerButtons > div {
+section#computerButtons {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+}
+
+section#playableButtons > div:first-child,
+section#computerButtons {
+    background-color: var(--secondary-background-color);
+    border-radius: 1rem;
+    padding: 1rem;
 }
 
 header#results > div > div {
@@ -93,13 +110,24 @@ header#results > div > div {
     gap: 0.5rem;
 }
 
+.res-container {
+    background-color: var(--secondary-background-color);
+    color: var(--font-color);
+    padding: 0.5rem 0.75rem;
+    width: 4rem;
+    border-radius: 1rem;
+}
+
+#round, #ties {
+    font-size: 1.25rem;
+}
+
 h1, h2 {
     margin: 0;
     font-weight: normal;
 }
 
 .small {
-    color: var(--secondary-font-color);
     font-size: 0.875rem;
 }
 
@@ -112,27 +140,32 @@ h1, h2 {
 }
 
 button {
-    background-color: var(--main-color);
-    border: none;
-    outline: none;
-    border-radius: 2rem;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-}
-
-.rps-icon {
-    font-size: 5rem;
-}
-
-.rps-button {
-    font-size: 3rem;
-    width: 5rem;
-    height: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
     border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.25rem 0.75rem;
+}
+
+button > i {
+    font-size: 1.25rem;
+}
+
+.main-button {
+    background-color: var(--main-color);
+    color: var(--secondary-font-color);
+}
+
+.round-button {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+}
+
+.rps-icon {
+    width: 3.75rem;
+    font-size: 2rem;
 }
 
 section#computerButtons button {
